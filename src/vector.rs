@@ -1,18 +1,12 @@
 
-//mod super::matrix;
-//use matrix::Matrix;
+mod super::matrix;
+use matrix::Matrix;
 
 
 pub struct Vector {
 	vec: Vec<f32>,
 	size: usize,
 }
-
-impl<const N: usize> From<[f32; N]> for Vector {
-	fn from(array: [f32; N]) -> Self {
-	    Self { vec : Vec::<f32>::from(array), size: array.len()}
-	}
-    }
 
 impl Vector {
 	pub fn new(number: f32, size: usize) -> Self {
@@ -23,15 +17,15 @@ impl Vector {
 		Vector {vec: vec, size: size}
 	}
 
-	// pub fn from(array: &[f32]) -> Self {
-	// 	let vec : Vec<f32> = array.to_vec();
-	// 	let size : usize = vec.len();
+	pub fn from(array: &[f32]) -> Self {
+		let vec : Vec<f32> = array.to_vec();
+		let size : usize = vec.len();
 
-	// 	if size == 0 {
-	// 		panic!("null size for vector creation");
-	// 	}
-	// 	Vector {vec: vec, size: size}
-	// }
+		if size == 0 {
+			panic!("null size for vector creation");
+		}
+		Vector {vec: vec, size: size}
+	}
 
 
 
