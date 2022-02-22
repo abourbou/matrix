@@ -2,6 +2,7 @@
 mod base_struct;
 use crate::base_struct::{Vector, Matrix};
 
+//#[cfg(feature = "ex00")]
 mod ex00;
 
 fn base()
@@ -50,3 +51,7 @@ fn main() {
 	base();
 	ex00();
 }
+
+
+//TODO add conditionnal compilation
+// https://github.com/bwasty/learn-opengl-rs/blob/master/src/main.rs
