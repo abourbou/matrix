@@ -21,7 +21,7 @@ pub fn linear_combination(u: &[Vector], coefs: &[f32]) -> Vector {
 	for i in  0..size_vector {
 		let mut buffer_value : f32 = 0.;
 		for j in 0..u.len() {
-			buffer_value += u[j].vec[i] * coefs[j];
+			buffer_value = u[j].vec[i].mul_add(coefs[j], buffer_value);
 		}
 		vec_lincb.push(buffer_value);
 	}

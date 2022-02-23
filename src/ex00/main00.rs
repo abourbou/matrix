@@ -1,5 +1,6 @@
 
 use crate::base_struct::{Vector, Matrix};
+use std::time::Instant;
 
 pub fn main00()
 {
@@ -14,6 +15,18 @@ pub fn main00()
 	vec1.scl(2.);
 	vec1.print();
 
+	let start = Instant::now();
+	const  BIG_SIZE: usize = 10000 * 1;
+	let mut vec3 = Vector::from([1.5; BIG_SIZE]);
+	let vec4 = Vector::from([0.75; BIG_SIZE]);
+	for _ in 0..1000 {
+		vec3.add(&vec4);
+		vec3.sub(&vec4);
+		vec3.scl(2.);
+	}
+	let duration = start.elapsed();
+	println!("time to run 1000 time a vector of {} elements : {}s", BIG_SIZE, duration.as_millis());
+
 	//*matrix base operations
 	println!("\n\nMatrix Operations test : ");
 	let mut mat1 = Matrix::from([[0.,1.],[2.,3.]]);
@@ -24,4 +37,14 @@ pub fn main00()
 	mat1.print();
 	mat1.scl(2.);
 	mat1.print();
+	let start = Instant::now();
+	let mut mat3 = Matrix::from([[1.5; BIG_SIZE], [1.5; BIG_SIZE], [1.5; BIG_SIZE]]);
+	let mat4 = Matrix::from([[0.75; BIG_SIZE], [0.75; BIG_SIZE], [0.75; BIG_SIZE]]);
+	for _ in 0..1000 {
+		mat3.add(&mat4);
+		mat3.sub(&mat4);
+		mat3.scl(2.);
+	}
+	let duration = start.elapsed();
+	println!("time to run 1000 time a matrix of {}  by 3 elements : {}s", BIG_SIZE, duration.as_millis());
 }
