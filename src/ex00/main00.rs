@@ -1,10 +1,9 @@
 
 use crate::base_struct::{Vector, Matrix};
-//use crate::ex00::{mat_operation, vec_operation};
 
-pub fn ex00()
+pub fn main00()
 {
-	//vector base operations
+	//*vector base operations
 	println!("\n\nVector Operations test : ");
 	let mut vec1 = Vector::from([1.,2.,3.]);
 	let vec2 = Vector::from([1.,1.,1.]);
@@ -15,7 +14,7 @@ pub fn ex00()
 	vec1.scl(2.);
 	vec1.print();
 
-	//matrix base operations
+	//*matrix base operations
 	println!("\n\nMatrix Operations test : ");
 	let mut mat1 = Matrix::from([[0.,1.],[2.,3.]]);
 	let mat2 = Matrix::new(1., 2, 2);

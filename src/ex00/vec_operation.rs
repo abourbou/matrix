@@ -1,5 +1,4 @@
 
-
 use crate::base_struct::Vector;
 
 impl Vector {
