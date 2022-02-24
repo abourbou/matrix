@@ -27,6 +27,17 @@ pub fn main00()
 	let duration = start.elapsed();
 	println!("time to run 1000 time a vector of {} elements : {}s", BIG_SIZE, duration.as_millis());
 
+	//test overload operator
+	println!("\n\nTest overload functions");
+	let mut vec5 = vec1 + vec2;
+	vec5.print();
+	vec5 = vec5 - Vector::from([0., 1., 2.]);
+	vec5.print();
+	vec5 = vec5 * 2.;
+	vec5.print();
+	vec5 = 0.5 * vec5;
+	vec5.print();
+	
 	//*matrix base operations
 	println!("\n\nMatrix Operations test : ");
 	let mut mat1 = Matrix::from([[0.,1.],[2.,3.]]);
@@ -47,4 +58,15 @@ pub fn main00()
 	}
 	let duration = start.elapsed();
 	println!("time to run 1000 time a matrix of {}  by 3 elements : {}s", BIG_SIZE, duration.as_millis());
+
+	//test overload operator
+	println!("\n\nTest overload functions");
+	let mut mat5 = mat1 + mat2;
+	mat5.print();
+	mat5 = mat5 - Matrix::from([[0.,1.],[2.,3.]]);
+	mat5.print();
+	mat5 = mat5 * 2.;
+	mat5.print();
+	mat5 = 0.5 * mat5;
+	mat5.print();
 }

@@ -11,6 +11,8 @@ pub fn basic()
 	vec.print();
 	let vec = Vector::from([0., 1., 2.]);
 	vec.print();
+	println!("{}", vec);
+	println!("vector size : {}", vec.size());
 
 	//*matrix creation
 	// !let mat = Matrix::from([[]]);
@@ -18,6 +20,7 @@ pub fn basic()
 	mat.print();
 	let mat = Matrix::from([[0.,0.,0.], [1.,1.,1.]]);
 	mat.print();
+	println!("{}", mat);
 	println!("matrix shape : {:?}", mat.shape());
 	println!("matrix is square : {}", mat.is_square());
 }

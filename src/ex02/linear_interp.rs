@@ -1,17 +1,10 @@
 
 
-use crate::base_struct::{Vector, Matrix};
-
-mov Vector {
-	pub fn lerp(u: Vector, v: Vector, t: f32) -> Vector {
-		if u.size() != v.size() {
-			panic!("can not interpolate vectors of different sizes");
-		}
-		let vec : Vec<f32> = Vec::new();
-		let opposite = 1. - t;
-		for i in 0..u.size() {
-			vec.push(u.vec[i] * opposite + v.vec[i] * t);
-		}
-		Vector {vec: vec, size: u.size}
-	}
+pub fn lerp<T: std::ops::Mul<f32, Output = T> + std::ops::Add<T, Output = T>>(u: T, v: T, t: f32) -> T {
+	let opposite = 1. - t;
+	u * opposite + v * t
+	// for i in 0..u.size() {
+	// 	vec.push(u.vec[i] * opposite + v.vec[i] * t);
+	// }
+	// Vector {vec: vec, size: u.size}
 }

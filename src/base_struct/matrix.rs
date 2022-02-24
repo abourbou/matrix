@@ -1,3 +1,6 @@
+
+use std::fmt;
+
 #[derive(Clone, PartialEq)]
 pub struct Matrix {
 	pub mat: Vec<f32>,
@@ -47,5 +50,28 @@ impl Matrix {
 			}
 		}
 		println!();
+	}
+}
+
+impl fmt::Display for Matrix {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+		let mut mat_string = String::new();
+		for i in 0..self.number_rows {
+			for j in 0..self.number_cols {
+				if j == 0 {
+					mat_string.push_str("[");
+				}
+				//mat_string.push_str(" ");
+				mat_string.push_str(&self.mat[i * self.number_cols + j].to_string());
+				if j != self.number_cols - 1 {
+					mat_string.push_str(", ");
+				}
+				else {
+					mat_string.push_str("]");
+				}
+			}
+			mat_string.push('\n');
+		}
+		write!(f, "{}", mat_string)
 	}
 }

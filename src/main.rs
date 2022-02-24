@@ -8,12 +8,16 @@ use crate::ex00::main00;
 mod ex01;
 use crate::ex01::main01;
 
+mod ex02;
+use crate::ex02::main02;
+
 fn main() {
 
 	let mut args: Vec<String> = std::env::args().collect();
 
 	if args.len() == 1 {
-		args = Vec::from([String::from(args[0].clone()), String::from("basic"), String::from("ex00")]);
+		args = Vec::from([String::from(args[0].clone()), String::from("basic"), String::from("ex00"),
+							String::from("ex01"), String::from("ex02"),]);
 	}
 
 	for exercice in &args[1..] {
@@ -21,6 +25,7 @@ fn main() {
 			"basic" => basic(),
 			"ex00" => main00(),
 			"ex01" => main01(),
+			"ex02" => main02(),
 			_	=> println!("Unknown exercice")
 		}
 	}

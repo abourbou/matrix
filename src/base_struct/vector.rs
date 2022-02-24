@@ -1,4 +1,6 @@
 
+use std::fmt;
+
 #[derive(Clone, PartialEq)]
 pub struct Vector {
 	pub vec: Vec<f32>,
@@ -31,5 +33,17 @@ impl Vector {
 			println!("[{}]", self.vec[i]);
 		}
 		println!();
+	}
+}
+
+impl fmt::Display for Vector {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+			let mut vec_string = String::new();
+			for i in 0..self.size {
+				vec_string.push('[');
+				vec_string.push_str(&self.vec[i].to_string());
+				vec_string.push_str("]\n");
+			}
+			write!(f, "{}", vec_string)
 	}
 }
