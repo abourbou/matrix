@@ -31,6 +31,10 @@ pub fn main07() {
 	// [4.]
 	// [-4.]
 
+	let u = Matrix::from([[2., -2.]]);
+	println!("{}", u.mul_vec(&v));
+	//[4.]
+
 	println!("\nmultiplication with mat");
 	let u = Matrix::from([
 	[1., 0.],
@@ -68,4 +72,12 @@ pub fn main07() {
 	// [-14., -7.]
 	// [44., 22.]
 
+	let u = Matrix::from([[1.,1.]]);
+	let v = Matrix::from([[1.], [1.]]);
+	println!("{}", u.mul_mat(&v));
+	// [2]
+	println!("test");
+	println!("{}", v.mul_mat(&u));
+	// [1.,1.]
+	// [1.,1.]
 }

@@ -9,7 +9,7 @@ impl Matrix {
 		}
 		let mut new_vec : Vec<f32> = Vec::new();
 		for i in 0..m {
-			new_vec.push(self.mat[i*m..i*m+n].iter().zip(vec.vec.iter()).map(|(m, v)| m * v).sum());
+			new_vec.push(self.mat[i*n..(i+1)*n].iter().zip(vec.vec.iter()).map(|(m, v)| m * v).sum());
 		}
 		Vector {vec: new_vec, size: m}
 	}
@@ -20,11 +20,12 @@ impl Matrix {
 		if n2 != n {
 			panic!("unvalid size for matrix multiplication with a matrix");
 		}
+		println!("m: {}, n: {}, p: {}", m, n, p);
 		let mut new_mat : Vec<f32> = Vec::new();
 		for i in 0..m {
 			for j in 0..p {
-				new_mat.push(self.mat[i*m..i*m+n].iter()
-				.zip(mat.mat.iter().enumerate().filter(|(it, _x)| it % n == j).map(|(_it, x)| x))
+				new_mat.push(self.mat[i*n..(i+1)*n].iter()
+				.zip(mat.mat.iter().enumerate().filter(|(it, _x)| it % p == j).map(|(_it, x)| x))
 				.map(|(&s, &rhs)| s * rhs).sum()
 			)
 			}
