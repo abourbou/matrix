@@ -1,7 +1,7 @@
 
 use std::fmt;
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug)]
 pub struct Vector {
 	pub vec: Vec<f32>,
 	pub size: usize,

@@ -1,7 +1,7 @@
 
 use std::fmt;
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug)]
 pub struct Matrix {
 	pub mat: Vec<f32>,
 	pub number_rows: usize,

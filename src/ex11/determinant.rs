@@ -3,7 +3,7 @@ use crate::base_struct::Matrix;
 
 impl Matrix {
 
-	pub fn determinant(self) -> f32 {
+	pub fn determinant(&self) -> f32 {
 		if !self.is_square() {
 			panic!("cannot calculate determinant of a none square matrix");
 		}
@@ -36,8 +36,8 @@ impl Matrix {
 				//operations on pivot
 				let pivot = some_pivot.unwrap();
 				if pivot != r {
-					buffer_matrix.swap_line(pivot, r);
 					det *= -1.;
+					buffer_matrix.swap_line(pivot, r);
 				}
 				//reduce other lines
 				for i in r + 1..m {
