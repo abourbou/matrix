@@ -23,13 +23,15 @@ mod ex09;
 use crate::ex09::main09;
 mod ex10;
 use crate::ex10::main10;
+mod ex11;
+use crate::ex11::main11;
 
 fn main() {
 
 	let mut args: Vec<String> = std::env::args().collect();
 
 	if args.len() == 1 {
-		args = String::from("null basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10").split(' ').map(|s| String::from(s)).collect();
+		args = String::from("null basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11").split(' ').map(|s| String::from(s)).collect();
 			
 			// [String::from(args[0].clone()), String::from("basic"), String::from("ex00"),
 			// 				String::from("ex01"), String::from("ex02"), String::from("ex03"),
@@ -50,6 +52,7 @@ fn main() {
 			"ex08" => main08(),
 			"ex09" => main09(),
 			"ex10" => main10(),
+			"ex11" => main11(),
 			_	=> println!("Unknown exercice")
 		}
 	}
