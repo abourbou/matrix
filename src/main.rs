@@ -29,13 +29,15 @@ mod ex12;
 use crate::ex12::main12;
 mod ex13;
 use crate::ex13::main13;
+mod ex14;
+use crate::ex14::main14;
 
 fn main() {
 
 	let mut args: Vec<String> = std::env::args().collect();
 
 	if args.len() == 1 {
-		args = String::from("n basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13").split(' ').map(|s| String::from(s)).collect();
+		args = String::from("n basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13 ex14").split(' ').map(|s| String::from(s)).collect();
 	}
 
 	for exercice in &args[1..] {
@@ -55,6 +57,7 @@ fn main() {
 			"ex11" => main11(),
 			"ex12" => main12(),
 			"ex13" => main13(),
+			"ex14" => main14(),
 			_	=> println!("Unknown exercice")
 		}
 	}
