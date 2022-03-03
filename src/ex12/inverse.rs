@@ -48,8 +48,8 @@ impl Matrix {
 				buffer_matrix.swap_line(pivot, r);
 			}
 			if (&buffer_matrix).mat[r * n + j] != 1. {
-				result_matrix.mult_line(pivot, 1. / buffer_matrix.mat[r * n + j]);
-				buffer_matrix.mult_line(pivot, 1. / buffer_matrix.mat[r * n + j]);
+				result_matrix.mult_line(r, 1. / buffer_matrix.mat[r * n + j]);
+				buffer_matrix.mult_line(r, 1. / buffer_matrix.mat[r * n + j]);
 			}
 
 			//reduce other lines
