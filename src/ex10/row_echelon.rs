@@ -27,7 +27,7 @@ impl Matrix {
 			panic!("line's index of the matrix overflow");
 		}
 		for j in 0..n {
-			self.mat[line_changed * n + j] = self.mat[line_changed * n + j] + coeff * self.mat[line_added * n +j];
+			self.mat[line_changed * n + j] += coeff * self.mat[line_added * n +j];
 		}
 	}
 	//mult_line: multiply a line of a matrix by a coeff
@@ -38,11 +38,11 @@ impl Matrix {
 			panic!("line's index of the matrix overflow");
 		}
 		for j in 0..n {
-			self.mat[line_changed * n + j] = self.mat[line_changed * n + j] * coeff;
+			self.mat[line_changed * n + j] *= coeff;
 		}
 	}
 
-	pub fn row_echelon(self) -> Matrix {
+	pub fn row_echelon(&self) -> Matrix {
 		let [m,n] = self.shape();
 		let mut r : usize = 0;
 		let mut buffer_matrix = self.clone();
@@ -53,7 +53,7 @@ impl Matrix {
 			//find pivot
 			let mut some_pivot : Option<usize> = None;
 			for i in r..m {
-				if (&buffer_matrix).mat[i * n + j] != 0. {
+				if (buffer_matrix).mat[i * n + j] != 0. {
 					some_pivot = Some(i);
 					break;
 				}
@@ -67,7 +67,7 @@ impl Matrix {
 			if pivot != r {
 				buffer_matrix.swap_line(pivot, r);
 			}
-			if (&buffer_matrix).mat[r * n + j] != 1. {
+			if buffer_matrix.mat[r * n + j] != 1. {
 				buffer_matrix.mult_line(r, 1. / buffer_matrix.mat[r * n + j]);
 			}
 

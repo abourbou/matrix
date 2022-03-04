@@ -25,7 +25,7 @@ impl Matrix {
 				//find pivot
 				let mut some_pivot : Option<usize> = None;
 				for i in r..m {
-					if (&buffer_matrix).mat[i * n + j] != 0. {
+					if buffer_matrix.mat[i * n + j] != 0. {
 						some_pivot = Some(i);
 						break;
 					}

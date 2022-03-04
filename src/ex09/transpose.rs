@@ -10,6 +10,6 @@ impl Matrix {
 				mat.push(self.mat[i * n + j]);
 			}
 		}
-		Matrix {mat: mat, number_rows: n, number_cols: m}
+		Matrix {mat, number_rows: n, number_cols: m}
 	}
 }

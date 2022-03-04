@@ -21,7 +21,7 @@ impl Vector {
 		if size == 0 {
 			panic!("null size for vector creation");
 		}
-		Vector {vec: vec![number; size], size: size}
+		Vector {vec: vec![number; size], size}
 	}
 
 	pub fn size(&self) -> usize {

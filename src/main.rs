@@ -37,7 +37,7 @@ fn main() {
 	let mut args: Vec<String> = std::env::args().collect();
 
 	if args.len() == 1 {
-		args = String::from("n basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13 ex14").split(' ').map(|s| String::from(s)).collect();
+		args = String::from("n basic ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09 ex10 ex11 ex12 ex13 ex14").split(' ').map(String::from).collect();
 	}
 
 	for exercice in &args[1..] {

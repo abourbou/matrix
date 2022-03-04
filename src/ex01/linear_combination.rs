@@ -2,7 +2,7 @@
 use crate::base_struct::Vector;
 
 pub fn linear_combination(u: &[Vector], coefs: &[f32]) -> Vector {
-	if u.len() == 0 {
+	if u.is_empty() {
 		panic!("empty list of vector");
 	}
 	else if u.len() != coefs.len() {
@@ -10,9 +10,9 @@ pub fn linear_combination(u: &[Vector], coefs: &[f32]) -> Vector {
 	}
 
 	let size_vector = u[0].size();
-	for i in 0..u.len()
+	for i in u
 	{
-		if u[i].size() != size_vector {
+		if i.size() != size_vector {
 			panic!("vector have inconsistent size");
 		}
 	}

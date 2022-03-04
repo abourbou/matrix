@@ -2,7 +2,7 @@
 use crate::base_struct::Matrix;
 
 impl Matrix {
-	pub fn inverse(self) -> Result<Matrix, &'static str> {
+	pub fn inverse(&self) -> Result<Matrix, &'static str> {
 		if !self.is_square() {
 			panic!("none square matrix doesn't have an inverse");
 		}
@@ -19,7 +19,7 @@ impl Matrix {
 			if it / m == it % m {
 				return x + 1.;
 			}
-			return *x;
+			*x
 		}).collect();
 
 		//row reduce the matrix
@@ -32,7 +32,7 @@ impl Matrix {
 			//find pivot
 			let mut some_pivot : Option<usize> = None;
 			for i in r..m {
-				if (&buffer_matrix).mat[i * n + j] != 0. {
+				if buffer_matrix.mat[i * n + j] != 0. {
 					some_pivot = Some(i);
 					break;
 				}
@@ -47,7 +47,7 @@ impl Matrix {
 				result_matrix.swap_line(pivot, r);
 				buffer_matrix.swap_line(pivot, r);
 			}
-			if (&buffer_matrix).mat[r * n + j] != 1. {
+			if buffer_matrix.mat[r * n + j] != 1. {
 				result_matrix.mult_line(r, 1. / buffer_matrix.mat[r * n + j]);
 				buffer_matrix.mult_line(r, 1. / buffer_matrix.mat[r * n + j]);
 			}

@@ -12,7 +12,7 @@ impl Matrix {
 			//find pivot
 			let mut some_pivot : Option<usize> = None;
 			for i in r..m {
-				if (&self).mat[i * n + j] != 0. {
+				if self.mat[i * n + j] != 0. {
 					some_pivot = Some(i);
 					break;
 				}
@@ -33,6 +33,6 @@ impl Matrix {
 			}
 			r += 1;
 		}
-		return r;
+		r
 	}
 }

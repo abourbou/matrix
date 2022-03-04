@@ -14,7 +14,7 @@ impl<const M: usize, const N: usize> From<[[f32; N]; M]> for Matrix {
 			panic!("try to create an empty matrix");
 		}
 		let mat : Vec<f32> = arr_of_arr.into_iter().flatten().collect();
-	    Self {mat : mat, number_rows: M, number_cols: N}
+	    Self {mat, number_rows: M, number_cols: N}
 	}
 }
 
@@ -59,7 +59,7 @@ impl fmt::Display for Matrix {
 		for i in 0..self.number_rows {
 			for j in 0..self.number_cols {
 				if j == 0 {
-					mat_string.push_str("[");
+					mat_string.push('[');
 				}
 				//mat_string.push_str(" ");
 				mat_string.push_str(&self.mat[i * self.number_cols + j].to_string());
@@ -67,7 +67,7 @@ impl fmt::Display for Matrix {
 					mat_string.push_str(", ");
 				}
 				else {
-					mat_string.push_str("]");
+					mat_string.push(']');
 				}
 			}
 			mat_string.push('\n');
