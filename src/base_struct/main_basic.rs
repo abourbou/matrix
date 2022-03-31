@@ -16,11 +16,12 @@ pub fn basic()
 
 	//*matrix creation
 	// !let mat = Matrix::from([[]]);
-	let mat = Matrix::new(0., 5, 5);
-	mat.print();
+	let mat = Matrix([[2,3,4]]);
+	println!("{}", mat.0[0][0]);
+	//mat.print();
 	let mat = Matrix::from([[0.,0.,0.], [1.,1.,1.]]);
-	mat.print();
-	println!("{}", mat);
-	println!("matrix shape : {:?}", mat.shape());
-	println!("matrix is square : {}", mat.is_square());
+	//mat.print();
+	//println!("{}", mat);
+	//println!("matrix shape : {:?}", mat.shape());
+	//println!("matrix is square : {}", mat.is_square());
 }
