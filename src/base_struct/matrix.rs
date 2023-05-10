@@ -1,83 +1,94 @@
 
-//use std::fmt;
 
-use super::scalar::Scalar; 
+use super::scalar::Scalar;
+use std::fmt;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Matrix<T : Scalar, const M: usize, const N: usize>
 {
 	pub arr: [[T; N]; M],
-	pub number_rows: usize,
-	pub number_cols: usize,
+	number_rows: usize,
+	number_cols: usize,
 }
 
 
 impl<T : Scalar, const M: usize, const N: usize> From<[[T; N]; M]> for Matrix<T, M, N> {
 	fn from(arr: [[T; N]; M]) -> Self {
 		if M == 0 || N == 0 {
-			panic!("try to create an empty matrix");
+			panic!("invalid matrix dimension");
 		}
-	    Self {arr, number_rows: M, number_cols: N}
+		Self {arr, number_rows: M, number_cols: N}
 	}
 }
 
-// impl Matrix {
-// 	pub fn new(number: f32, row: usize, col: usize) -> Self {
-// 		if row == 0 || col == 0 {
-// 			panic!("null size for matrix creation");
-// 		}
-// 		Matrix {mat: vec![number; row * col], number_rows: row, number_cols: col}
-// 	}
+impl<T : Scalar, const M: usize, const N: usize> Default for Matrix<T, M, N> {
+	fn default() -> Self {
+		Matrix::from([[T::zero(); N]; M])
+	}
+}
 
-// 	pub fn shape(&self) -> [usize; 2] {
-// 		[self.number_rows, self.number_cols]
-// 	}
+impl<T : Scalar, const M: usize, const N: usize> Matrix<T, M, N> {
+	pub fn new(number: T) -> Self {
+		Matrix::from([[number; N]; M])
+	}
 
-// 	pub fn is_square(&self) -> bool {
-// 		self.number_rows == self.number_cols
-// 	}
+	pub fn shape(&self) -> [usize; 2] {
+		[self.number_rows, self.number_cols]
+	}
 
-// 	pub fn print(&self) {
-// 		for i in 0..self.number_rows {
-// 			for j in 0..self.number_cols {
-// 				if j == 0 {
-// 					print!("[");
-// 				}
-// 				print!(" {}", self.mat[i * self.number_cols + j]);
-// 				if j != self.number_cols - 1 {
-// 					print!(",");
-// 				}
-// 				else {
-// 					println!(" ]");
-// 				}
-// 			}
-// 		}
-// 		println!();
-// 	}
-// }
+	pub fn row(&self) -> usize {
+		self.number_rows
+	}
 
-// impl fmt::Display for Matrix {
-// 	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-// 		let mut mat_string = String::new();
-// 		for i in 0..self.number_rows {
-// 			for j in 0..self.number_cols {
-// 				if j == 0 {
-// 					mat_string.push('[');
-// 				}
-// 				//mat_string.push_str(" ");
-// 				mat_string.push_str(&self.mat[i * self.number_cols + j].to_string());
-// 				if j != self.number_cols - 1 {
-// 					mat_string.push_str(", ");
-// 				}
-// 				else {
-// 					mat_string.push(']');
-// 				}
-// 			}
-// 			mat_string.push('\n');
-// 		}
-// 		write!(f, "{}", mat_string)
-// 	}
-// }
+	pub fn col(&self) -> usize {
+		self.number_cols
+	}
+
+	pub fn is_square(&self) -> bool {
+		self.number_rows == self.number_cols
+	}
+
+	pub fn print(&self) {
+		for i in 0..M {
+			for j in 0..N {
+				if j == 0 {
+					print!("[");
+				}
+				print!(" {}", self.arr[i][j]);
+				if j != self.number_cols - 1 {
+					print!(",");
+				}
+				else {
+					println!(" ]");
+				}
+			}
+		}
+		println!();
+	}
+}
+
+impl<T : Scalar, const M: usize, const N: usize> fmt::Display for Matrix<T, M, N> {
+	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+	let mut mat_string = String::new();
+	for i in 0..M {
+		for j in 0..N {
+			if j == 0 {
+				mat_string.push_str("[ ");
+			}
+			//mat_string.push_str(" ");
+			mat_string.push_str(&self.arr[i][j].to_string());
+			if j != N - 1 {
+				mat_string.push_str(", ");
+			}
+			else {
+				mat_string.push_str(" ]");
+			}
+		}
+		mat_string.push('\n');
+	}
+	write!(f, "{}", mat_string)
+}
+}
 
 
 #[cfg(test)]
@@ -85,23 +96,25 @@ mod tests {
 	use super::Matrix;
 
 	#[test]
-	fn basic_test00() {
+	fn array_init_test00() {
 		let arr = [[0.,0.], [0.,0.]];
 		let mat = Matrix::from(arr);
 		assert_eq!(mat.arr, arr);
 		assert_eq!(mat.number_rows, 2);
 		assert_eq!(mat.number_cols, 2);
+		assert_eq!(mat.is_square(), true);
 	}
 	#[test]
-	fn basic_test01() {
+	fn array_init_test01() {
 		let arr = [[0.,1.]];
 		let mat = Matrix::from(arr);
 		assert_eq!(mat.arr, arr);
 		assert_eq!(mat.number_rows, 1);
 		assert_eq!(mat.number_cols, 2);
+		assert_eq!(mat.is_square(), false);
 	}
 	#[test]
-	fn basic_test02() {
+	fn array_init_test02() {
 		let arr = [[0.], [1.]];
 		let mat = Matrix::from(arr);
 		assert_eq!(mat.arr, arr);
@@ -110,16 +123,28 @@ mod tests {
 	}
 	#[test]
 	#[should_panic]
-	fn basic_test03() {
+	fn array_init_test03() {
 		let arr : [[f32; 0];1] = [[]];
 		let _mat = Matrix::from(arr);
 	}
 	#[test]
 	#[should_panic]
-	fn basic_test04() {
+	fn array_init_test04() {
 		let arr : [[f32; 1];0] = [];
 		let _mat = Matrix::from(arr);
 	}
 
-
+	#[test]
+	fn default_test00() {
+		let mat = Matrix::<f32,2,3>::default();
+		assert_eq!(mat.arr, [[0.0;3];2]);
+		assert_eq!(mat.row(), 2);
+		assert_eq!(mat.col(), 3);
+	}
+	#[test]
+	fn new_test00() {
+		let mat = Matrix::<f32,3,2>::new(1.0);
+		assert_eq!(mat.arr, [[1.0; 2];3]);
+		assert_eq!(mat.shape(), [3, 2]);
+	}
 }
