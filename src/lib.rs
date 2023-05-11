@@ -1,7 +1,7 @@
 
 pub mod base_struct;
-mod ex00;
-// mod ex01;
+pub mod ex00;
+pub mod ex01;
 // mod ex02;
 // mod ex03;
 // mod ex04;

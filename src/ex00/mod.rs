@@ -1,3 +1,3 @@
 
-mod mat_operation;
-mod vec_operation;
+pub mod mat_operation;
+pub mod vec_operation;
