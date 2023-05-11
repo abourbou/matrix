@@ -7,7 +7,7 @@ pub mod ex03;
 pub mod ex04;
 pub mod ex05;
 pub mod ex06;
-// pub mod ex07;
+pub mod ex07;
 // pub mod ex08;
 // pub mod ex09;
 // pub mod ex10;
@@ -15,3 +15,10 @@ pub mod ex06;
 // pub mod ex12;
 // pub mod ex13;
 // pub mod ex14;
+
+// TODO Check complexity lib 
+
+// TODO Add operation += and -= to Scalar
+// TODO Add matrix operation from scop
+// TODO reorganize the lib to be a "real" matrix operation and not a list of ex
+// TODO rename fills to be explicit
