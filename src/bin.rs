@@ -8,8 +8,6 @@ fn main() {
 	let mut mat = Matrix::<f32,3,2>::new(3.);
 	let mut vec = Vector::<f32,2>::new(2.5);
 
-	let mat3 = mat * 2.0;
-	// println!("{}", mat3);
 	let mat3 = 2.0 * mat;
 	// println!("{}", mat3);
 
@@ -21,7 +19,7 @@ fn main() {
 	println!("{}", mat);
 
 	let vec2 = Vector::<f32,2>::new(2.5);
-	vec += vec;
+	vec += vec2;
 	println!("{}", vec);
 
 }
