@@ -3,23 +3,23 @@ extern crate matrixlib;
 
 use matrixlib::base_struct::matrix::Matrix;
 use matrixlib::base_struct::vector::Vector;
+use num_complex::Complex;
 
 fn main() {
 	let mut mat = Matrix::<f32,3,2>::new(3.);
-	let mut vec = Vector::<f32,2>::new(2.5);
+
+	println!("{}", mat);
+	mat.print();
+
+	let mat_comp = Matrix::<Complex<f32>,3,2>::new(Complex::<f32>::new(3., -1.));
+	println!("{}", mat_comp);
+	mat_comp.print();
 
 	let mat3 = 2.0 * mat;
-	// println!("{}", mat3);
-
 	mat += mat3;
-	println!("{}", mat);
-	mat -= mat3;
-	println!("{}", mat);
-	mat *= 4.0;
+
 	println!("{}", mat);
 
-	let vec2 = Vector::<f32,2>::new(2.5);
-	vec += vec2;
+	let vec = Vector::<f32,2>::new(2.5);
 	println!("{}", vec);
-
 }
