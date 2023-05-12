@@ -14,3 +14,4 @@ name = "testbin"
 path = "src/bin.rs"
 
 [dependencies]
+assert_float_eq = "1.1.3"
