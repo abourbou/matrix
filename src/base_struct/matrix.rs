@@ -67,6 +67,16 @@ impl<T : Scalar, const M: usize, const N: usize> Matrix<T, M, N> {
 	}
 }
 
+impl<T : Scalar, const M: usize> Matrix<T, M, M> {
+	pub fn identity() -> Self {
+		let mut id = Self::default();
+		for i in 0..M {
+			id.arr[i][i] = T::one();
+		}
+		id
+	}
+}
+
 impl<T : Scalar, const M: usize, const N: usize> fmt::Display for Matrix<T, M, N> {
 	fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
 	let mut mat_string = String::new();
