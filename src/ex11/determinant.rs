@@ -1,12 +1,10 @@
 
 use crate::base_struct::{scalar::Scalar, matrix::Matrix};
-use std::ops::{Add,Sub,Mul,Div};
 
 // Compute determinant by reducing the matrix to an triangle matrix
 // determinant of a triangle matrix is the product of his diagonal
 // Swapping 2 lines change the sign of the determinant
-impl <T: Scalar, const M : usize> Matrix<T,M,M>
-	where T : Add<T,Output=T> + Sub<T,Output=T> + Mul<T,Output=T> + Div<T,Output=T> {
+impl <T: Scalar, const M : usize> Matrix<T,M,M> {
 	pub fn determinant(&self) -> T {
 		if M == 1 {
 			self.arr[0][0]
@@ -48,7 +46,7 @@ impl <T: Scalar, const M : usize> Matrix<T,M,M>
 				r += 1;
 			}
 			for i in 0..M {
-				det = det * buffer_matrix.arr[i][i];
+				det *= buffer_matrix.arr[i][i];
 			}
 			det
 		}

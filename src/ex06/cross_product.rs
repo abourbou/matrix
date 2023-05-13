@@ -1,9 +1,7 @@
 
 use crate::base_struct::{scalar::Scalar, vector::Vector};
-use std::ops::{Sub, Mul};
 
-pub fn cross_product<T : Scalar>(u: &Vector<T,3>, v: &Vector<T,3>) -> Vector<T,3>
-	where T : Sub<T, Output = T> + Mul<T, Output = T> {
+pub fn cross_product<T : Scalar>(u: &Vector<T,3>, v: &Vector<T,3>) -> Vector<T,3> {
 	Vector::from([	u.arr[1] * v.arr[2] - u.arr[2] * v.arr[1],
 					u.arr[2] * v.arr[0] - u.arr[0] * v.arr[2],
 					u.arr[0] * v.arr[1] - u.arr[1] * v.arr[0]])

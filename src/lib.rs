@@ -22,8 +22,9 @@ pub mod ex15;
 
 // TODO Check complexity of the lib
 // TODO use cargo clippy
+
 // TODO Add operation += and -= to Scalar
-// TODO Erase "where" statement inside of scalar.rs
+
 // TODO Add incertitude on equality of matrix
 // TODO Add accessor for the lib to the array and put it not pub
 

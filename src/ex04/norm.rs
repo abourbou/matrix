@@ -1,13 +1,11 @@
 
 use crate::base_struct::{scalar::Scalar, vector::Vector};
-use std::ops::{Add, Mul};
 
-impl <T : Scalar, const M : usize> Vector<T,M>
-	where T : Add<T,Output=T> + Mul<T,Output=T>{
+impl <T : Scalar, const M : usize> Vector<T,M> {
 	pub fn norm_1(&self) -> f32 {
 		let mut norm = T::zero().norm();
 		for i in 0..M {
-			norm = norm + self.arr[i].norm();
+			norm += self.arr[i].norm();
 		}
 		norm
 	}
@@ -15,7 +13,7 @@ impl <T : Scalar, const M : usize> Vector<T,M>
 	pub fn norm(&self) -> f32 {
 		let mut norm = T::zero().norm();
 		for i in 0..M {
-			norm = norm + self.arr[i].norm() * self.arr[i].norm();
+			norm += self.arr[i].norm() * self.arr[i].norm();
 		}
 		norm.sqrt()
 	}

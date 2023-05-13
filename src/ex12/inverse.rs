@@ -1,9 +1,7 @@
 
 use crate::base_struct::{scalar::Scalar, matrix::Matrix};
-use std::ops::{Add, Sub, Mul, Div};
 
-impl <T: Scalar, const M : usize> Matrix<T,M,M>
-	where T : Add<T,Output=T> + Sub<T,Output=T> + Mul<T,Output=T> + Div<T,Output=T> {
+impl <T: Scalar, const M : usize> Matrix<T,M,M> {
 	pub fn inverse(&self) -> Result<Self, &'static str> {
 		//check determinant
 		if self.determinant() == T::zero() {
@@ -75,7 +73,7 @@ impl <T: Scalar, const M : usize> Matrix<T,M,M>
 		assert_eq!(u.inverse(), Ok(Matrix::from([
 			[1., 0., 0.],
 			[0., 1., 0.],
-			[0., 0., 1.],			
+			[0., 0., 1.],
 		])));
 	}
 	#[test]
@@ -88,7 +86,7 @@ impl <T: Scalar, const M : usize> Matrix<T,M,M>
 		assert_eq!(u.inverse(), Ok(Matrix::from([
 			[0.5, 0., 0.],
 			[0., 0.5, 0.],
-			[0., 0., 0.5],			
+			[0., 0., 0.5],
 		])));
 	}
 	#[test]

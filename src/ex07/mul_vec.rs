@@ -1,30 +1,28 @@
 
 use crate::base_struct::{scalar::Scalar, vector::Vector, matrix::Matrix};
-use std::ops::{Add, Mul};
+use std::ops::Mul;
 
-impl<T : Scalar, const M: usize, const N: usize> Mul<Vector<T,N>> for Matrix<T, M, N>
-	where T: Add<T,Output=T> + Mul<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> Mul<Vector<T,N>> for Matrix<T, M, N> {
 	type Output = Vector<T,M>;
 	fn mul(self, vec: Vector<T,N>) -> Vector<T,M> {
 		let mut result = Vector::<T,M>::default();
 		for i in 0..M {
 			for j in 0..N {
-				result.arr[i] = result.arr[i] + self.arr[i][j] * vec.arr[j]; 
+				result.arr[i] += self.arr[i][j] * vec.arr[j];
 			}
 		}
 		result
 	}
 }
 
-impl<T : Scalar, const M: usize, const N: usize, const P: usize> Mul<Matrix<T,N,P>> for Matrix<T, M, N>
-	where T: Add<T,Output=T> + Mul<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize, const P: usize> Mul<Matrix<T,N,P>> for Matrix<T, M, N> {
 	type Output = Matrix<T,M,P>;
 	fn mul(self, mat: Matrix<T,N,P>) -> Matrix<T,M,P> {
 		let mut result = Matrix::<T,M,P>::default();
 		for i in 0..M {
 			for j in 0..P {
 				for k in 0..N {
-					result.arr[i][j] = result.arr[i][j] + self.arr[i][k] * mat.arr[k][j]; 
+					result.arr[i][j] += self.arr[i][k] * mat.arr[k][j];
 				}
 			}
 		}

@@ -1,9 +1,7 @@
 
 use crate::base_struct::{scalar::Scalar, matrix::Matrix};
-use std::ops::{Add, Sub, Mul, Div};
 
-impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N>
-	where T: Add<T,Output=T> + Sub<T,Output=T> + Mul<T,Output=T> + Div<T,Output=T> {
+impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 	//swap line : swap two lines of a matrix
 	// L1 <-> L2
 	pub fn swap_line(&mut self, line1 : usize, line2: usize) {
@@ -27,7 +25,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N>
 			panic!("line's index of the matrix overflow");
 		}
 		for j in 0..N {
-			self.arr[line_changed][j] = self.arr[line_changed][j] + coeff * self.arr[line_added][j];
+			self.arr[line_changed][j] += coeff * self.arr[line_added][j];
 		}
 	}
 	//sub_line : sub a line multiplied by a coeff to an other line
@@ -37,7 +35,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N>
 			panic!("line's index of the matrix overflow");
 		}
 		for j in 0..N {
-			self.arr[line_changed][j] = self.arr[line_changed][j] - coeff * self.arr[line_substr][j];
+			self.arr[line_changed][j] -= coeff * self.arr[line_substr][j];
 		}
 	}
 	//mult_line: multiply a line of a matrix by a coeff
@@ -47,7 +45,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N>
 			panic!("line's index of the matrix overflow");
 		}
 		for j in 0..N {
-			self.arr[line_changed][j] = self.arr[line_changed][j] * coeff;
+			self.arr[line_changed][j] *= coeff;
 		}
 	}
 

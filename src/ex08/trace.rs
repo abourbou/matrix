@@ -1,13 +1,11 @@
 
 use crate::base_struct::{scalar::Scalar, matrix::Matrix};
-use std::ops::Add;
 
-impl <T : Scalar, const M : usize> Matrix<T, M, M>
-	where T : Add<T,Output=T> {
+impl <T : Scalar, const M : usize> Matrix<T, M, M> {
 	pub fn trace(&self) -> T {
 		let mut val = T::zero();
 		for i in 0..M {
-			val = val + self.arr[i][i];
+			val += self.arr[i][i];
 		}
 		val
 	}

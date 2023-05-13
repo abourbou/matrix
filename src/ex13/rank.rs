@@ -1,9 +1,7 @@
 
 use crate::base_struct::{scalar::Scalar, matrix::Matrix};
-use std::ops::{Add, Sub, Mul, Div};
 
-impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N>
-	where T : Add<T,Output=T> + Sub<T,Output=T> + Mul<T,Output=T> + Div<T,Output=T>{
+impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 	pub fn rank(mut self) -> usize{
 		let mut r : usize = 0;
 		for j in 0..N {

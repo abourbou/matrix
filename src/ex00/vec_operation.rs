@@ -3,8 +3,7 @@ use crate::base_struct::{scalar::Scalar, vector::Vector};
 use std::ops::{Add, Sub, Mul, AddAssign, SubAssign, MulAssign};
 
 //impl overload operator
-impl<T : Scalar, const M: usize> Add<Vector<T,M>> for Vector<T, M>
-	where T: Add<T,Output=T> {
+impl<T : Scalar, const M: usize> Add<Vector<T,M>> for Vector<T, M> {
 	type Output = Self;
 	fn add(self, rhs: Self) -> Self {
 		let mut result = Self::default();
@@ -15,8 +14,7 @@ impl<T : Scalar, const M: usize> Add<Vector<T,M>> for Vector<T, M>
 	}
 }
 
-impl<T : Scalar, const M: usize> Sub<Vector<T,M>> for Vector<T, M>
-	where T: Sub<T,Output=T> {
+impl<T : Scalar, const M: usize> Sub<Vector<T,M>> for Vector<T, M> {
 	type Output = Self;
 	fn sub(self, rhs: Self) -> Self {
 		let mut result = Self::default();
@@ -27,8 +25,7 @@ impl<T : Scalar, const M: usize> Sub<Vector<T,M>> for Vector<T, M>
 	}
 }
 
-impl<T : Scalar, const M: usize> Mul<T> for Vector<T, M>
-where T: Mul<T,Output=T> {
+impl<T : Scalar, const M: usize> Mul<T> for Vector<T, M> {
 	type Output = Self;
 	fn mul(self, k: T) -> Self {
 		let mut result = Self::default();
@@ -52,27 +49,24 @@ impl<const M: usize> Mul<Vector<f32, M>> for f32 {
 }
 
 // Overload +=, -= and *=
-impl<T : Scalar, const M: usize> AddAssign<Vector<T,M>> for Vector<T, M>
-	where T: Add<T,Output=T> {
+impl<T : Scalar, const M: usize> AddAssign<Vector<T,M>> for Vector<T, M> {
 	fn add_assign(&mut self, rhs: Self){
 		for i in 0..M {
-			self.arr[i] = self.arr[i] + rhs.arr[i];
+			self.arr[i] += rhs.arr[i];
 		};
 	}
 }
-impl<T : Scalar, const M: usize> SubAssign<Vector<T,M>> for Vector<T, M>
-	where T: Sub<T,Output=T> {
+impl<T : Scalar, const M: usize> SubAssign<Vector<T,M>> for Vector<T, M> {
 	fn sub_assign(&mut self, rhs: Self){
 		for i in 0..M {
-			self.arr[i] = self.arr[i] - rhs.arr[i];
+			self.arr[i] -= rhs.arr[i];
 		};
 	}
 }
-impl<T : Scalar, const M: usize> MulAssign<T> for Vector<T, M>
-	where T: Mul<T,Output=T> {
+impl<T : Scalar, const M: usize> MulAssign<T> for Vector<T, M> {
 	fn mul_assign(&mut self, k: T){
 		for i in 0..M {
-			self.arr[i] = k * self.arr[i];
+			self.arr[i] *= k;
 		};
 	}
 }

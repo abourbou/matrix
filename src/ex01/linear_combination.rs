@@ -1,9 +1,7 @@
 
 use crate::base_struct::{scalar::Scalar, vector::Vector};
-use std::ops::{Add, Mul};
 
-pub fn linear_combination<T: Scalar, const M : usize>(u: &[Vector<T,M>], coeffs: &[T]) -> Vector<T,M>
-	where T: Add<T,Output=T> + Mul<T,Output=T>{
+pub fn linear_combination<T: Scalar, const M : usize>(u: &[Vector<T,M>], coeffs: &[T]) -> Vector<T,M> {
 		if u.is_empty() {
 			panic!("empty list of vector");
 		}
@@ -15,7 +13,7 @@ pub fn linear_combination<T: Scalar, const M : usize>(u: &[Vector<T,M>], coeffs:
 		for i in  0..M {
 			let mut buffer_value = T::zero();
 			for j in 0..u.len() {
-				buffer_value = coeffs[j] * u[j].arr[i] + buffer_value;
+				buffer_value += coeffs[j] * u[j].arr[i];
 			}
 			vec_lincb.arr[i] = buffer_value;
 		}

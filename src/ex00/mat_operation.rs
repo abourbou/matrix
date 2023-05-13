@@ -3,8 +3,7 @@ use crate::base_struct::{scalar::Scalar, matrix::Matrix};
 use std::ops::{Add, Sub, Mul, AddAssign, SubAssign, MulAssign};
 
 //impl overload operator
-impl<T : Scalar, const M: usize, const N: usize> Add<Matrix<T,M,N>> for Matrix<T, M, N>
-	where T: Add<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> Add<Matrix<T,M,N>> for Matrix<T, M, N> {
 	type Output = Self;
 	fn add(self, rhs: Self) -> Self {
 		let mut result = Self::default();
@@ -17,8 +16,7 @@ impl<T : Scalar, const M: usize, const N: usize> Add<Matrix<T,M,N>> for Matrix<T
 	}
 }
 
-impl<T : Scalar, const M: usize, const N: usize> Sub<Matrix<T,M,N>> for Matrix<T, M, N>
-	where T: Sub<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> Sub<Matrix<T,M,N>> for Matrix<T, M, N> {
 	type Output = Self;
 	fn sub(self, rhs: Self) -> Self {
 		let mut result = Self::default();
@@ -31,8 +29,7 @@ impl<T : Scalar, const M: usize, const N: usize> Sub<Matrix<T,M,N>> for Matrix<T
 	}
 }
 
-impl<T : Scalar, const M: usize, const N: usize> Mul<T> for Matrix<T, M, N>
-where T: Mul<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> Mul<T> for Matrix<T, M, N> {
 	type Output = Self;
 	fn mul(self, k: T) -> Self {
 		let mut result = Self::default();
@@ -60,32 +57,29 @@ impl<const M: usize, const N: usize> Mul<Matrix<f32, M, N>> for f32 {
 }
 
 // Overload +=, -= and *=
-impl<T : Scalar, const M: usize, const N: usize> AddAssign<Matrix<T,M,N>> for Matrix<T, M, N>
-	where T: Add<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> AddAssign<Matrix<T,M,N>> for Matrix<T, M, N> {
 	fn add_assign(&mut self, rhs: Self){
 		for i in 0..M {
 			for j in 0..N {
-				self.arr[i][j] = self.arr[i][j] + rhs.arr[i][j];
+				self.arr[i][j] += rhs.arr[i][j];
 			}
 		};
 	}
 }
-impl<T : Scalar, const M: usize, const N: usize> SubAssign<Matrix<T,M,N>> for Matrix<T, M, N>
-	where T: Sub<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> SubAssign<Matrix<T,M,N>> for Matrix<T, M, N> {
 	fn sub_assign(&mut self, rhs: Self){
 		for i in 0..M {
 			for j in 0..N {
-				self.arr[i][j] = self.arr[i][j] - rhs.arr[i][j];
+				self.arr[i][j] -= rhs.arr[i][j];
 			}
 		};
 	}
 }
-impl<T : Scalar, const M: usize, const N: usize> MulAssign<T> for Matrix<T, M, N>
-	where T: Mul<T,Output=T> {
+impl<T : Scalar, const M: usize, const N: usize> MulAssign<T> for Matrix<T, M, N> {
 	fn mul_assign(&mut self, k: T){
 		for i in 0..M {
 			for j in 0..N {
-				self.arr[i][j] = k * self.arr[i][j];
+				self.arr[i][j] *= k;
 			}
 		};
 	}

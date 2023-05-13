@@ -1,13 +1,11 @@
 
 use crate::base_struct::{scalar::Scalar, vector::Vector};
-use std::ops::{Add, Mul};
 
-impl <T : Scalar, const M : usize> Vector<T,M>
-	where T : Add<T,Output=T> + Mul<T,Output=T>{
+impl <T : Scalar, const M : usize> Vector<T,M> {
 	pub fn dot(&self, v: &Self) -> T {
 		let mut dot = T::zero();
 		for i in 0..M {
-			dot = dot + self.arr[i] * v.arr[i];
+			dot += self.arr[i] * v.arr[i];
 		}
 		dot
 	}
