@@ -16,7 +16,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 					break;
 				}
 			}
-			if some_pivot == None {
+			if some_pivot.is_none() {
 				continue;
 			}
 			//operations on pivot

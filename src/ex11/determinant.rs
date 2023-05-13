@@ -15,7 +15,7 @@ impl <T: Scalar, const M : usize> Matrix<T,M,M> {
 		else {
 			let mut r : usize = 0;
 			let mut det = T::one();
-			let mut buffer_matrix = self.clone();
+			let mut buffer_matrix = *self;
 			for j in 0..M {
 				if r == M {
 					break;
@@ -28,7 +28,7 @@ impl <T: Scalar, const M : usize> Matrix<T,M,M> {
 						break;
 					}
 				}
-				if some_pivot == None {
+				if some_pivot.is_none() {
 					continue;
 				}
 				//operations on pivot

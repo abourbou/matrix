@@ -51,7 +51,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 
 	pub fn row_echelon(&self) -> Self {
 		let mut r : usize = 0;
-		let mut buffer_matrix = self.clone();
+		let mut buffer_matrix = *self;
 		for j in 0..N {
 			if r == M {
 				break;
@@ -64,7 +64,7 @@ impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 					break;
 				}
 			}
-			if some_pivot == None {
+			if some_pivot.is_none() {
 				continue;
 			}
 
