@@ -1,9 +1,10 @@
 
 
 use super::scalar::Scalar;
+use super::scalar;
 use std::fmt;
 
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub struct Vector<T : Scalar, const M: usize>
 {
 	pub arr: [T; M],
@@ -17,6 +18,25 @@ impl<T : Scalar, const M: usize> From<[T; M]> for Vector<T, M> {
 			panic!("invalid Vector dimension");
 		}
 		Self {arr, length: M}
+	}
+}
+
+impl<T : Scalar, const M: usize> PartialEq for Vector<T, M> {
+	fn eq(&self, other: &Self) -> bool {
+		for i in 0..M {
+			if (self.arr[i] - other.arr[i]).norm() > scalar::MATRIX_EPSILON {
+				return false;
+			}
+		}
+		true
+	}
+	fn ne(&self, other: &Self) -> bool {
+		for i in 0..M {
+			if (self.arr[i] - other.arr[i]).norm() > scalar::MATRIX_EPSILON {
+				return true;
+			}
+		}
+		false
 	}
 }
 

@@ -1,9 +1,10 @@
 
 
 use super::scalar::Scalar;
+use super::scalar;
 use std::fmt;
 
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub struct Matrix<T : Scalar, const M: usize, const N: usize>
 {
 	pub arr: [[T; N]; M],
@@ -18,6 +19,29 @@ impl<T : Scalar, const M: usize, const N: usize> From<[[T; N]; M]> for Matrix<T,
 			panic!("invalid matrix dimension");
 		}
 		Self {arr, number_rows: M, number_cols: N}
+	}
+}
+
+impl<T : Scalar, const M: usize, const N: usize> PartialEq for Matrix<T, M, N> {
+	fn eq(&self, other: &Self) -> bool {
+		for i in 0..M {
+			for j in 0..N {
+				if (self.arr[i][j] - other.arr[i][j]).norm() > scalar::MATRIX_EPSILON {
+					return false;
+				}
+			}
+		}
+		true
+	}
+	fn ne(&self, other: &Self) -> bool {
+		for i in 0..M {
+			for j in 0..N {
+				if (self.arr[i][j] - other.arr[i][j]).norm() > scalar::MATRIX_EPSILON {
+					return true;
+				}
+			}
+		}
+		false
 	}
 }
 

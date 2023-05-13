@@ -20,11 +20,8 @@ pub mod ex13;
 pub mod ex14;
 pub mod ex15;
 
-// TODO Check complexity of the lib
-// TODO Add incertitude on equality of matrix
-// TODO Add accessor for the lib to the array and put it not pub
-
 // !Later
 // TODO reorganize the lib to be a "real" matrix operation and not a list of ex
 // TODO rename fills to be explicit
 // TODO Add matrix operation from scop
+// TODO Add accessor for the lib to the array and put it not pub ?
