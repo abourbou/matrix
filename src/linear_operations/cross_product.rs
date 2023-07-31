@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, vector::Vector};
+use crate::base::{scalar::Scalar, vector::Vector};
 
 pub fn cross_product<T : Scalar>(u: &Vector<T,3>, v: &Vector<T,3>) -> Vector<T,3> {
 	Vector::from([	u.arr[1] * v.arr[2] - u.arr[2] * v.arr[1],

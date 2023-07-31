@@ -1,5 +1,5 @@
 
-use crate::base_class::{matrix::Matrix};
+use crate::base::{matrix::Matrix};
 
 /// compute a projection matrix
 ///

@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, matrix::Matrix};
+use crate::base::{scalar::Scalar, matrix::Matrix};
 
 // Compute determinant by reducing the matrix to an triangle matrix
 // determinant of a triangle matrix is the product of his diagonal

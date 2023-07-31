@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, vector::Vector};
+use crate::base::{scalar::Scalar, vector::Vector};
 
 pub fn linear_combination<T: Scalar, const M : usize>(u: &[Vector<T,M>], coeffs: &[T]) -> Vector<T,M> {
 		if u.is_empty() {

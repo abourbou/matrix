@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, vector::Vector};
+use crate::base::{scalar::Scalar, vector::Vector};
 use std::ops::Div;
 
 /// Calcule the cosinus of the angles between two vectors

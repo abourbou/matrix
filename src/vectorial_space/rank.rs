@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, matrix::Matrix};
+use crate::base::{scalar::Scalar, matrix::Matrix};
 
 impl <T: Scalar, const M : usize, const N : usize> Matrix<T,M,N> {
 	pub fn rank(mut self) -> usize{

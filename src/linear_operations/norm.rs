@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, vector::Vector};
+use crate::base::{scalar::Scalar, vector::Vector};
 
 impl <T : Scalar, const M : usize> Vector<T,M> {
 	pub fn norm_1(&self) -> f32 {

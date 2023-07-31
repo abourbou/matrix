@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, matrix::Matrix};
+use crate::base::{scalar::Scalar, matrix::Matrix};
 
 impl <T : Scalar, const M : usize> Matrix<T, M, M> {
 	pub fn trace(&self) -> T {

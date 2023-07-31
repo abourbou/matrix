@@ -9,7 +9,7 @@ where T :  Mul<f32, Output=T> + Add<T, Output=T>
 }
 
 #[cfg(test)]
-	use crate::base_class::{vector::Vector, matrix::Matrix};
+	use crate::base::{vector::Vector, matrix::Matrix};
 	#[test]
 	fn f32_test() {
 		assert_eq!(lerp(1., 2., 0.), 1.);

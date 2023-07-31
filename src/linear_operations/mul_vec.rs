@@ -1,5 +1,5 @@
 
-use crate::base_class::{scalar::Scalar, vector::Vector, matrix::Matrix};
+use crate::base::{scalar::Scalar, vector::Vector, matrix::Matrix};
 use std::ops::Mul;
 
 impl<T : Scalar, const M: usize, const N: usize> Mul<Vector<T,N>> for Matrix<T, M, N> {
