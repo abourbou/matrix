@@ -2,26 +2,17 @@
 #[macro_use]
 extern crate assert_float_eq;
 
-pub mod base_struct;
-pub mod ex00;
-pub mod ex01;
-pub mod ex02;
-pub mod ex03;
-pub mod ex04;
-pub mod ex05;
-pub mod ex06;
-pub mod ex07;
-pub mod ex08;
-pub mod ex09;
-pub mod ex10;
-pub mod ex11;
-pub mod ex12;
-pub mod ex13;
-pub mod ex14;
-pub mod ex15;
+pub mod base_class;
+pub mod graphic_operations;
+pub mod linear_operations;
+pub mod vectorial_space;
+
 
 // !Later
 // TODO reorganize the lib to be a "real" matrix operation and not a list of ex
 // TODO rename fills to be explicit
 // TODO Add matrix operation from scop
 // TODO Add accessor for the lib to the array and put it not pub ?
+// TODO Try Deref?DerefMut for Vector instead of reimplementing everything
+// TODO Use MaybeUninit<T> to init array
+// TODO Use iterator MUCH more
