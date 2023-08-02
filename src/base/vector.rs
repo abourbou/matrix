@@ -11,7 +11,6 @@ pub struct Vector<T : Scalar, const M: usize>
 	length: usize,
 }
 
-
 impl<T : Scalar, const M: usize> From<[T; M]> for Vector<T, M> {
 	fn from(arr: [T; M]) -> Self {
 		if M == 0 {
@@ -29,14 +28,6 @@ impl<T : Scalar, const M: usize> PartialEq for Vector<T, M> {
 			}
 		}
 		true
-	}
-	fn ne(&self, other: &Self) -> bool {
-		for i in 0..M {
-			if (self.arr[i] - other.arr[i]).norm() > scalar::MATRIX_EPSILON {
-				return true;
-			}
-		}
-		false
 	}
 }
 

@@ -12,7 +12,6 @@ pub struct Matrix<T : Scalar, const M: usize, const N: usize>
 	number_cols: usize,
 }
 
-
 impl<T : Scalar, const M: usize, const N: usize> From<[[T; N]; M]> for Matrix<T, M, N> {
 	fn from(arr: [[T; N]; M]) -> Self {
 		if M == 0 || N == 0 {
@@ -32,16 +31,6 @@ impl<T : Scalar, const M: usize, const N: usize> PartialEq for Matrix<T, M, N> {
 			}
 		}
 		true
-	}
-	fn ne(&self, other: &Self) -> bool {
-		for i in 0..M {
-			for j in 0..N {
-				if (self.arr[i][j] - other.arr[i][j]).norm() > scalar::MATRIX_EPSILON {
-					return true;
-				}
-			}
-		}
-		false
 	}
 }
 

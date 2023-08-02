@@ -5,7 +5,7 @@ use std::ops::Div;
 /// Calcule the cosinus of the angles between two vectors
 pub fn angle_cos<T: Scalar, const M : usize>(u: &Vector<T,M>, v: &Vector<T,M>) -> T
 	where T : Div<f32, Output = T> {
-	u.dot(v) / (u.norm() * v.norm())
+	u.dot_product(v) / (u.norm() * v.norm())
 }
 
 #[cfg(test)]

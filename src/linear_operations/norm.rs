@@ -30,6 +30,15 @@ impl <T : Scalar, const M : usize> Vector<T,M> {
 	}
 }
 
+impl <T : Scalar, const M : usize> Vector<T,M> {
+	pub fn normalize(&mut self) {
+		*self *= (1. / self.norm()).into();
+	}
+	pub fn normalized(&self) -> Self {
+		*self * (1. / self.norm()).into()
+	}
+}
+
 #[cfg(test)]
 	#[test]
 	fn test00() {
