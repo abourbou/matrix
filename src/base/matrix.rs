@@ -3,6 +3,7 @@
 use super::scalar::Scalar;
 use super::scalar;
 use std::fmt;
+use std::ops::{Index, IndexMut};
 
 #[derive(Debug, Copy, Clone)]
 pub struct Matrix<T : Scalar, const M: usize, const N: usize>
@@ -79,6 +80,22 @@ impl<T : Scalar, const M: usize, const N: usize> Matrix<T, M, N> {
 		println!();
 	}
 }
+
+// Accessors
+impl<T : Scalar, const M: usize, const N: usize> Index<usize> for Matrix<T, M, N> {
+	type Output = [T; N];
+	fn index(&self, index: usize) -> &Self::Output {
+		&self.arr[index]
+	}
+}
+
+impl<T : Scalar, const M: usize, const N: usize> IndexMut<usize> for Matrix<T, M, N> {
+	fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+		&mut self.arr[index]
+	}
+}
+
+
 
 impl<T : Scalar, const M: usize> Matrix<T, M, M> {
 	pub fn identity() -> Self {

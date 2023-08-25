@@ -3,6 +3,7 @@
 use super::scalar::Scalar;
 use super::scalar;
 use std::fmt;
+use std::ops::{Index, IndexMut};
 
 #[derive(Debug, Copy, Clone)]
 pub struct Vector<T : Scalar, const M: usize>
@@ -51,6 +52,20 @@ impl<T : Scalar, const M: usize> Vector<T, M> {
 			println!("[ {} ]", self.arr[i]);
 		}
 		println!();
+	}
+}
+
+// Accessors
+impl<T : Scalar, const M: usize> Index<usize> for Vector<T, M> {
+	type Output = T;
+	fn index(&self, index: usize) -> &Self::Output {
+		&self.arr[index]
+	}
+}
+
+impl<T : Scalar, const M: usize> IndexMut<usize> for Vector<T, M> {
+	fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+		&mut self.arr[index]
 	}
 }
 
