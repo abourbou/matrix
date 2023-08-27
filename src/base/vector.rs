@@ -2,6 +2,7 @@
 
 use super::scalar::Scalar;
 use super::scalar;
+use super::matrix;
 use std::fmt;
 use std::ops::{Index, IndexMut};
 
@@ -52,6 +53,9 @@ impl<T : Scalar, const M: usize> Vector<T, M> {
 			println!("[ {} ]", self.arr[i]);
 		}
 		println!();
+	}
+	pub fn matrix(&self) -> matrix::Matrix<T, 1, M> {
+		matrix::Matrix::from([self.arr])
 	}
 }
 

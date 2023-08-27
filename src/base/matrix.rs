@@ -73,11 +73,13 @@ impl<T : Scalar, const M: usize, const N: usize> Matrix<T, M, N> {
 					print!(",");
 				}
 				else {
-					println!(" ]");
+					print!(" ]");
+					if i != M - 1 {
+						println!();
+					}
 				}
 			}
 		}
-		println!();
 	}
 }
 
